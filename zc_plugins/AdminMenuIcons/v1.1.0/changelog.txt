@@ -1,0 +1,5 @@
+v1.1.0 - 15/11/2026
+Master on/off switch, seven extra starting icons and broader raster uploads.
+Automatic PNG conversion/resizing, server-aware upload limits and memory checks.
+Expanded Plugin Manager description; author Tony Cradwick (highburyeye).
+Upgrade retains previous assignments, uploads and personal favourites.

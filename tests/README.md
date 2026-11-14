@@ -9,7 +9,7 @@ The install ZIP excludes this entire directory.
 URL helpers and scripted-installer base classes against an isolated MariaDB database.
 It checks installation, profile grants, sparse defaults, replacement/removal, stable identifiers
 with alphabetical sorting, parameter-specific entries, independent favourites, POST/CSRF/role checks,
-invalid input, upload conversion, core cache behaviour, upgrade preservation and complete uninstall.
+invalid input, upload conversion, core cache behaviour, master-switch behaviour, upgrade preservation and complete uninstall.
 
 Prerequisites: PHP with mysqli, GD and the normal Zen Cart extensions; a clean Zen Cart checkout;
 a disposable local MariaDB server; and a database administrator named `root` with an empty password on that disposable server.
@@ -41,17 +41,17 @@ Then run `node tests/browser.cjs` with Playwright installed and Chromium availab
 The fixture deliberately supplies test logins and a fixed test token; it is not a real admin login.
 It uses the core dropdown renderer, sanitizer and styles, with a small simulated application wrapper.
 
-The browser checks cover icon selection/removal, mixed-entry alignment, separate configuration groups,
+The browser checks cover the master switch and staff restrictions, icon selection/removal, mixed-entry alignment, separate configuration groups,
 actual multipart upload-and-assignment, escaping, staff restrictions, independent favourites,
-CSRF rejection, and responsive layout. Screenshots, if generated, go to the ignored `.artifacts` folder.
+CSRF rejection, responsive layout, and a real 1254px transparent bee upload. Screenshots, if generated, go to the ignored `.artifacts` folder.
 
-## Checks performed for the first build
+## Checks performed for v1.1.0
 
 - PHP syntax checks on every plugin and test PHP file.
 - JavaScript syntax checks on both plugin scripts.
-- 43 database integration checks each with official Zen Cart **2.1.0** and **2.2.1** source, including the availability of every picker icon in the host Font Awesome library.
+- 70 database integration checks each with official Zen Cart **2.1.0** and **2.2.1** source, including availability of every picker icon, conversion from all six supported raster types, processing limits, transparency, and migration from the original three-table database.
 - PHP **8.4.27**, MariaDB **11.8.9**.
-- 28 browser checks with Chromium Headless Shell **156.0.8078.79**, using the 2.2.1 core renderer and sanitizer.
+- 38 browser checks with Chromium Headless Shell **156.0.8078.79**, using the 2.2.1 core renderer and sanitizer.
 - Desktop and mobile fixture screenshots visually reviewed, including a dropdown mixing an icon and a blank slot.
 
 This is an isolated integration harness, **not a complete installed-store end-to-end test**.
@@ -67,3 +67,4 @@ This is an isolated integration harness, **not a complete installed-store end-to
 7. Upgrade by installing a complete later version folder; verify uploads and preferences remain.
 8. On a disposable copy, uninstall and confirm only plugin tables, its page and grants are removed.
 9. Check the actual shop's PHP version, admin theme and any custom Content Security Policy.
+10. Switch the master control off and back on in a superadmin account, then reload a staff account. Verify choices remain and staff cannot change the master switch.
