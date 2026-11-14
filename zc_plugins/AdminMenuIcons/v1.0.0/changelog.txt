@@ -1,0 +1,3 @@
+v1.0.0 - 15/11/2026
+First build for store testing: optional dropdown icons, Font Awesome picker,
+cleaned image uploads, per-admin favourites and encapsulated lifecycle support.
