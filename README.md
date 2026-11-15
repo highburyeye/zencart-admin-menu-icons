@@ -3,14 +3,14 @@
 Optional icons beside admin dropdown entries, with personal favourites shown in bold.
 Top-level headings and menu order stay unchanged. An empty icon space keeps every label aligned.
 
-**Current test build: v1.1.0.** Intended for Zen Cart 2.1.0 and 2.2.1.
+**Current test build: v1.1.1.** Intended for Zen Cart 2.1.0 and 2.2.1.
 See [testing notes](tests/README.md) for the checks performed and the remaining store checks.
 
 ## Features
 
 - A small set of starting icons for common entries, including Orders, Customers and Categories / Products.
 - Additional starting icons for My Store (house), Images, Customer Details, Email Options, Shipping/Packaging, Stock and Website Maintenance.
-- A searchable collection of Font Awesome 6 Free solid icons, using the library already included in Zen Cart's admin.
+- A searchable collection of 1,389 Font Awesome 6 Free solid icons, using the library already included in Zen Cart's admin.
 - Use a different built-in icon, upload your own, choose no icon, or restore the starting choice.
 - Reuse an uploaded icon across several entries.
 - Shared icon assignments, editable only by superadmins.
@@ -31,7 +31,7 @@ See [testing notes](tests/README.md) for the checks performed and the remaining 
 
 1. Download the install ZIP from `packages`, or download and unzip this repository.
 2. Upload the **`zc_plugins/AdminMenuIcons`** folder into your shop's existing `zc_plugins` folder.
-   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.0/manifest.php`.
+   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.1/manifest.php`.
    Keep the plugin's internal folder named `admin`; do not rename it to match your admin directory.
 3. Sign in as a superadmin and open **Modules → Plugin Manager**.
 4. Install and enable **Admin Menu Icons & Favourites**.
@@ -44,6 +44,7 @@ Nothing is added to the storefront.
 ## Use
 
 Use the search and menu filters to find an entry. A superadmin can click **Change** to open the icon picker.
+The picker identifies the target as **Changing icon for: Menu → Entry**. Search built-in icons by name; hyphenated names also work.
 
 - **No icon** reserves the alignment space but shows no picture.
 - **Use starting icon** restores the plugin's default for that entry. Many entries deliberately have no starting icon.
@@ -89,6 +90,11 @@ Upload the complete new version folder alongside the existing version and use Pl
 **Do not uninstall first**: uninstall removes saved data. The upgrade code preserves existing data and respects preferences-page access changes.
 
 Upgrading from v1.0.0 creates the master-switch setting automatically. Existing icon assignments, explicit “no icon” choices, uploaded images and personal favourites are retained.
+The v1.1.1 update changes the settings layout and expands the icon picker; it keeps the same starting assignments and database structure as v1.1.0.
+
+If Plugin Manager logs an undefined `pluginId`, inspect the manifests of **all** encapsulated plugins.
+Opening that page scans every plugin, regardless of which entry is selected. Each manifest needs a `pluginId`; use `0` for an unpublished plugin.
+All AdminMenuIcons releases include this field. There is no need to edit the core Plugin Manager.
 
 ## Disable or uninstall
 

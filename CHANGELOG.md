@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.1.1 — 15/11/2026
+
+- Flattened the settings page: neutral admin colours, subtle 2px corners, plainer tables and a simpler heading.
+- Made the picker target explicit with “Changing icon for: Menu → Entry”, including screen-reader context.
+- Expanded the searchable Font Awesome collection from 99 to 1,389 distinct solid icons, verified against the fonts in both supported Zen Cart versions.
+- Kept all previous icon names valid, the existing sparse defaults and all saved choices.
+- Added hyphenated-name search and a clear message when no icons match.
+- Added a real Plugin Manager scanner regression check and troubleshooting notes for missing metadata in other plugins.
+
 ## v1.1.0 — 15/11/2026
 
 - Added a superadmin-controlled master switch; disabling visuals retains all saved choices.

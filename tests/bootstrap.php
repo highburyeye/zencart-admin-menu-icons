@@ -57,7 +57,7 @@ $connection->query('CREATE DATABASE IF NOT EXISTS ami_menu_icons_test CHARACTER 
 $connection->close();
 $db = new queryFactory;
 if (!$db->connect($amiTestHost, 'root', '', 'ami_menu_icons_test', 'unused', false)) throw new RuntimeException('Test database connection failed.');
-$pluginRoot = dirname(__DIR__) . '/zc_plugins/AdminMenuIcons/v1.1.0';
+$pluginRoot = dirname(__DIR__) . '/zc_plugins/AdminMenuIcons/v1.1.1';
 require $pluginRoot . '/admin/includes/extra_datafiles/admin_menu_icons_filenames.php';
 foreach ([$pluginRoot . '/admin/includes/languages/english/extra_definitions/lang.admin_menu_icons_name.php', $pluginRoot . '/admin/includes/languages/english/lang.admin_menu_icons.php'] as $file) {
     foreach (require $file as $key => $value) define($key, $value);
@@ -67,7 +67,7 @@ require $pluginRoot . '/Installer/ScriptedInstaller.php';
 class AmiTestInstaller extends ScriptedInstaller
 {
     public function install() { return $this->executeInstall(); }
-    public function upgrade() { return $this->executeUpgrade('v1.0.0'); }
+    public function upgrade(string $from = 'v1.0.0') { return $this->executeUpgrade($from); }
     public function uninstall() { return $this->executeUninstall(); }
 }
 function freshQuery(string $sql) { return $GLOBALS['db']->Execute($sql, null, false, 0, true); }

@@ -1,0 +1,5 @@
+v1.1.1 - 15/11/2026
+Flatter settings layout with neutral admin colours and subtle 2px corners.
+Picker clearly identifies the menu entry whose icon is being changed.
+Expanded from 99 to 1,389 searchable Font Awesome Free solid icons.
+Existing defaults, icon names, assignments, uploads and favourites are retained.
