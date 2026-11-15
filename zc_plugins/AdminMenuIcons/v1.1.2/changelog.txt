@@ -1,0 +1,4 @@
+v1.1.2 - 15/11/2026
+Remember entry search, menu selection and favourites-only filters after saving.
+Filter state is separate for each shop and admin login in the current browser tab.
+Existing assignments, uploads, favourites and master-switch state are retained.

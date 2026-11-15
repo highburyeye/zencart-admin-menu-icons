@@ -56,7 +56,7 @@ and scans every released AdminMenuIcons version. An optional manifest path check
 ZENCART_ROOT=/absolute/path/to/zencart-2.2.1 php tests/plugin_manager.php
 ```
 
-## Checks performed for v1.1.1
+## Checks performed for v1.1.2
 
 - PHP syntax checks on every plugin and test PHP file.
 - JavaScript syntax checks on both plugin scripts.
@@ -64,7 +64,8 @@ ZENCART_ROOT=/absolute/path/to/zencart-2.2.1 php tests/plugin_manager.php
 - Verified all 1,389 names against both actual solid-font character maps, including unique glyphs and preservation of the original 99 names.
 - Five real Plugin Manager scanner checks, plus an optional custom-manifest check.
 - PHP **8.4.27**, MariaDB **11.8.9**.
-- 48 browser checks with Chromium Headless Shell **156.0.8078.79**, using the 2.2.1 core renderer and sanitizer, including explicit picker context, expanded search and mobile picker behaviour.
+- 58 browser checks with Chromium Headless Shell **156.0.8078.79**, using the 2.2.1 core renderer and sanitizer, including explicit picker context, expanded search and mobile picker behaviour.
+- Filter restoration after icon saves, uploads, master-switch saves and reloads; per-login separation within one tab; persistent clearing; normal filtering and picker operation when browser storage is blocked.
 - Desktop and mobile fixture screenshots visually reviewed, including a dropdown mixing an icon and a blank slot.
 
 This is an isolated integration harness, **not a complete installed-store end-to-end test**.

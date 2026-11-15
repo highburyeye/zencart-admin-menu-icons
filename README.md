@@ -3,7 +3,7 @@
 Optional icons beside admin dropdown entries, with personal favourites shown in bold.
 Top-level headings and menu order stay unchanged. An empty icon space keeps every label aligned.
 
-**Current test build: v1.1.1.** Intended for Zen Cart 2.1.0 and 2.2.1.
+**Current test build: v1.1.2.** Intended for Zen Cart 2.1.0 and 2.2.1.
 See [testing notes](tests/README.md) for the checks performed and the remaining store checks.
 
 ## Features
@@ -31,7 +31,7 @@ See [testing notes](tests/README.md) for the checks performed and the remaining 
 
 1. Download the install ZIP from `packages`, or download and unzip this repository.
 2. Upload the **`zc_plugins/AdminMenuIcons`** folder into your shop's existing `zc_plugins` folder.
-   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.1/manifest.php`.
+   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.2/manifest.php`.
    Keep the plugin's internal folder named `admin`; do not rename it to match your admin directory.
 3. Sign in as a superadmin and open **Modules → Plugin Manager**.
 4. Install and enable **Admin Menu Icons & Favourites**.
@@ -45,6 +45,7 @@ Nothing is added to the storefront.
 
 Use the search and menu filters to find an entry. A superadmin can click **Change** to open the icon picker.
 The picker identifies the target as **Changing icon for: Menu → Entry**. Search built-in icons by name; hyphenated names also work.
+Your entry search, selected menu and **My favourites only** filter are remembered after saving or reloading in the same browser tab, separately for each admin login. This uses browser session storage; closing the tab clears those filters.
 
 - **No icon** reserves the alignment space but shows no picture.
 - **Use starting icon** restores the plugin's default for that entry. Many entries deliberately have no starting icon.

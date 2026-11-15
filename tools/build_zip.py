@@ -6,7 +6,7 @@ from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument('--version', default='v1.1.1')
+parser.add_argument('--version', default='v1.1.2')
 args = parser.parse_args()
 plugin = root / 'zc_plugins' / 'AdminMenuIcons' / args.version
 if not plugin.is_dir() or not (plugin / 'manifest.php').is_file():

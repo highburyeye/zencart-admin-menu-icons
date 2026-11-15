@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.2 — 15/11/2026
+
+- Remember the entry search, selected menu and favourites-only filter after saves and page reloads.
+- Keep filter state separate for each admin login and shop within the current browser tab.
+- Ignore unavailable menu groups and continue normally if browser storage is disabled or full.
+
 ## v1.1.1 — 15/11/2026
 
 - Flattened the settings page: neutral admin colours, subtle 2px corners, plainer tables and a simpler heading.
