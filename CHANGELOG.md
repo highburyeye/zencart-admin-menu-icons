@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.4 — 15/11/2026
+
+- Rename the upload-management section to “Delete unused uploaded icons”.
+- Show every menu entry using an uploaded image, or label it as unused and available to delete.
+- Explain how to release an image before deleting it, while retaining the existing deletion protection.
+
 ## v1.1.3 — 15/11/2026
 
 - Check that Font Awesome styles and the actual font file are available before displaying built-in icons.

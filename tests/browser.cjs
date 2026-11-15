@@ -200,6 +200,31 @@ const path = require('node:path');
         }
         await page.reload({waitUntil: 'networkidle'});
         check(await page.evaluate(() => window.AdminMenuIcons.fontReady) === true && await page.locator('#ami-built-in').evaluate(n => !n.hidden), 'built-in choices recover when the font is available again');
+        const originalUpload = page.locator('.ami-upload-card').filter({hasText: label});
+        await page.locator('.ami-uploads summary').click();
+        check((await originalUpload.locator('.ami-upload-usage').textContent()).trim() === 'Unused — can be deleted' && await originalUpload.locator('button').isEnabled(), 'unused upload clearly labelled and deletable');
+        for (const key of ['customers', 'thirdParty']) {
+            await page.locator('#ami-row-' + key + ' .ami-change').click();
+            await navigateAfter(page, () => page.locator('.ami-icon-option[data-kind="image"]').filter({hasText: label}).click());
+        }
+        await page.locator('.ami-uploads summary').click();
+        const uses = await originalUpload.locator('.ami-upload-usage').textContent();
+        check(uses.includes('In use by:') && uses.includes('Customers') && uses.includes('Third-party & tools') && await originalUpload.locator('.ami-upload-usage').isVisible(), 'all assigned menu entries explained visibly');
+        check(await originalUpload.locator('button').isDisabled(), 'shared upload cannot be deleted');
+        check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'usage details fit a narrow screen');
+        await page.setViewportSize({width: 1280, height: 960});
+        await page.locator('.ami-uploads').scrollIntoViewIfNeeded();
+        await page.screenshot({path: path.join(artifacts, 'upload-usage.png')});
+        await page.locator('#ami-row-customers .ami-change').click();
+        await navigateAfter(page, () => page.locator('.ami-pick[data-kind="none"]').click());
+        await page.locator('.ami-uploads summary').click();
+        check((await originalUpload.locator('.ami-upload-usage').textContent()).trim() === 'In use by: Third-party & tools' && await originalUpload.locator('button').isDisabled(), 'removing one use retains the remaining protection');
+        await page.locator('#ami-row-thirdParty .ami-change').click();
+        await navigateAfter(page, () => page.locator('.ami-pick[data-kind="none"]').click());
+        await page.locator('.ami-uploads summary').click();
+        check((await originalUpload.locator('.ami-upload-usage').textContent()).trim() === 'Unused — can be deleted' && await originalUpload.locator('button').isEnabled(), 'removing the final use enables deletion');
+        await navigateAfter(page, () => originalUpload.locator('button').click());
+        check(await originalUpload.count() === 0, 'unused upload can actually be deleted through the UI');
         check(errors.length === 0, 'no JavaScript errors: ' + errors.join('; '));
         console.log('PASS: ' + checks + ' browser checks, Chromium local fixture');
     } finally { await browser.close(); }

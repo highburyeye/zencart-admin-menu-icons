@@ -1,0 +1,84 @@
+/* Copyright 2026 Tony Cradwick (highburyeye). SPDX-License-Identifier: GPL-2.0-only */
+.ami-settings { max-width: 1180px; margin: 20px auto; padding-bottom: 24px; color: #333; font-size: 14px; }
+.ami-settings .btn, .ami-settings .form-control, .ami-settings .alert, .ami-settings .badge { border-radius: 2px; }
+.ami-settings [hidden] { display: none !important; }
+.ami-heading { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
+.ami-heading h1 { font-size: 24px; margin: 0 0 7px; font-weight: 500; font-variant: normal; }
+.ami-heading p { color: #666; margin: 0; }
+.ami-master-panel { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 12px 15px; border: 1px solid #ddd; background: #f5f5f5; border-radius: 2px; margin-bottom: 18px; }
+.ami-master-panel p { margin: 5px 0 0; color: #666; font-size: 12px; }
+.ami-master-control { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; color: #333; }
+.ami-master-control form { margin: 0; }
+.ami-notes { display: flex; flex-wrap: wrap; gap: 4px 32px; color: #666; font-size: 13px; margin-bottom: 18px; }
+.ami-notes p { margin: 0; }
+.ami-filters { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; padding: 12px 15px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 2px; margin-bottom: 20px; }
+.ami-filters label { margin: 0; font-size: 12px; color: #555; font-weight: 600; }
+.ami-filters .form-control { margin-top: 6px; min-height: 38px; }
+.ami-search-label { flex: 1 1 260px; }
+.ami-filters select { min-width: 180px; }
+.ami-filters .ami-only-label { display: flex; align-items: center; gap: 7px; min-height: 38px; color: #333; }
+.ami-filter-switch { appearance: none; display: inline-block; position: relative; flex: 0 0 34px; width: 34px; height: 20px; margin: 0 !important; border-radius: 12px; background: #b9c3cc; cursor: pointer; }
+.ami-filter-switch::before { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+.ami-filter-switch:checked { background: #337ab7; }
+.ami-filter-switch:checked::before { transform: translateX(14px); }
+.ami-filter-switch:focus-visible { outline: 3px solid #71b8e5; outline-offset: 3px; }
+.ami-table { border: 1px solid #ddd; }
+.ami-table thead th { padding: 10px 15px; font-size: 13px; color: #333; background: #f5f5f5; border-bottom: 1px solid #ddd; }
+.ami-table .ami-group-heading th { padding: 9px 15px; background: #eee; color: #333; font-size: 13px; border-top: 1px solid #ddd; }
+.ami-table .ami-row td { padding: 9px 15px; vertical-align: middle; border-top: 1px solid #eee; font-size: 14px; }
+.ami-table .ami-row:hover { background: #fafafa; }
+.ami-table .ami-row:target { background: #edf4fb; scroll-margin-top: 35px; }
+.ami-table th:nth-child(2) { width: 330px; }
+.ami-favourite-column { width: 145px; text-align: center; }
+.ami-preview { display: flex; align-items: center; gap: 10px; }
+.ami-preview .ami-icon-slot { color: #4b6676; }
+.ami-entry-name.ami-is-favourite { font-weight: 700; }
+.ami-assignment { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.ami-icon-name { color: #677583; font-size: 12px; }
+.ami-default-badge { display: inline-block; margin-left: 5px; background: #f0f3f5; border-radius: 2px; padding: 2px 5px; color: #687782; font-size: 10px; }
+.ami-change { border-color: #ccc; color: #333; }
+.ami-favourite-form { margin: 0; }
+.ami-switch { display: inline-block; vertical-align: middle; border: 0; border-radius: 16px; padding: 3px; width: 38px; height: 22px; background: #b9c3cc; transition: background .12s; }
+.ami-switch > span { display: block; width: 16px; height: 16px; background: white; border-radius: 50%; transition: transform .12s; box-shadow: 0 1px 3px #0003; }
+.ami-switch[aria-checked="true"] { background: #337ab7; }
+.ami-switch[aria-checked="true"] > span { transform: translateX(16px); }
+.ami-switch:focus-visible { outline: 3px solid #71b8e5; outline-offset: 3px; }
+.ami-switch:disabled { opacity: .5; cursor: wait; }
+.ami-empty { padding: 25px; text-align: center; color: #667584; }
+.ami-uploads { padding: 16px; border: 1px solid #ddd; border-radius: 2px; margin: 18px 0; }
+.ami-uploads summary { cursor: pointer; font-weight: 600; }
+.ami-upload-help { margin: 12px 0 0; color: #555; font-size: 12px; }
+.ami-upload-gallery { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.ami-upload-card { display: flex; align-items: center; gap: 10px; max-width: 100%; border: 1px solid #ddd; padding: 10px; border-radius: 2px; }
+.ami-upload-info { min-width: 0; overflow-wrap: anywhere; }
+.ami-upload-usage { margin: 4px 0 0; color: #555; font-size: 12px; }
+.ami-upload-card img { object-fit: contain; }
+.ami-upload-card form { margin: 0; flex-shrink: 0; }
+.ami-picker { width: min(780px, calc(100vw - 32px)); max-height: 88vh; border: 1px solid #aaa; border-radius: 2px; padding: 20px; color: #333; box-shadow: 0 3px 12px #0003; }
+.ami-picker::backdrop { background: #0006; }
+.ami-picker-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.ami-picker h2 { font-size: 22px; margin: 0 0 5px; }
+.ami-picker h3 { font-size: 14px; font-weight: 600; margin: 20px 0 10px; }
+.ami-picker-heading p { color: #555; margin: 8px 0; }
+.ami-picker-heading strong { color: #222; }
+.ami-close { background: transparent; border: 0; font-size: 28px; line-height: 1; color: #555; }
+.ami-picker-actions { display: flex; gap: 10px; padding: 10px 0; }
+.ami-icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 8px; margin-top: 14px; max-height: 280px; overflow: auto; padding: 3px; }
+.ami-icon-option { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px; padding: 12px 5px; min-height: 78px; border: 1px solid #ddd; border-radius: 2px; color: #444; background: #fff; }
+.ami-icon-option:hover, .ami-icon-option:focus-visible { background: #edf4fb; border-color: #337ab7; }
+.ami-icon-option i { font-size: 23px; }
+.ami-icon-option span { font-size: 10px; overflow-wrap: anywhere; }
+.ami-icon-option img { object-fit: contain; }
+.ami-upload-section { border-top: 1px solid #ddd; margin-top: 22px; }
+.ami-upload-section p { font-size: 12px; }
+.ami-upload-section input { margin: 8px 0 12px; }
+.ami-footer { margin-top: 24px; color: #87939c; font-size: 11px; text-align: right; }
+@media (max-width: 600px) {
+    .ami-settings { padding: 0 10px 20px; }
+    .ami-heading h1 { font-size: 21px; }
+    .ami-table .ami-row td { padding: 10px; }
+    .ami-table th:nth-child(2) { min-width: 170px; }
+    .ami-favourite-column { min-width: 90px; }
+    .ami-picker { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .ami-switch, .ami-switch > span { transition: none; } }

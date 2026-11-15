@@ -3,7 +3,7 @@
 Optional icons beside admin dropdown entries, with personal favourites shown in bold.
 Top-level headings and menu order stay unchanged. An empty icon space keeps every label aligned.
 
-**Current test build: v1.1.3.** Intended for Zen Cart 2.1.0 and 2.2.1.
+**Current test build: v1.1.4.** Intended for Zen Cart 2.1.0 and 2.2.1.
 See [testing notes](tests/README.md) for the checks performed and the remaining store checks.
 
 ## Features
@@ -33,7 +33,7 @@ If Font Awesome is missing or its font file is blocked, built-in icons are hidde
 
 1. Download the install ZIP from `packages`, or download and unzip this repository.
 2. Upload the **`zc_plugins/AdminMenuIcons`** folder into your shop's existing `zc_plugins` folder.
-   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.3/manifest.php`.
+   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.4/manifest.php`.
    Keep the plugin's internal folder named `admin`; do not rename it to match your admin directory.
 3. Sign in as a superadmin and open **Modules → Plugin Manager**.
 4. Install and enable **Admin Menu Icons & Favourites**.
@@ -76,7 +76,7 @@ SVG, ICO, TIFF and HEIC are not accepted in this version.
 
 The small cleaned images are stored in the database, not as publicly accessible uploaded files.
 They survive upgrades along with assignments and favourites. The collection is limited to 100 uploads.
-Open **Manage uploaded icons** to delete unused images. Assigned images must be unassigned before deletion.
+Open **Delete unused uploaded icons** to remove images you no longer need. Each image shows the menu entries using it, or “Unused — can be deleted”. For an image in use, choose **No icon** or a replacement on every listed entry first; its Delete button then becomes available.
 
 If your admin uses a custom Content Security Policy, its `img-src` must permit `data:` for uploaded icons.
 The plugin uses no inline event handlers and adds no external scripts or stylesheets.
