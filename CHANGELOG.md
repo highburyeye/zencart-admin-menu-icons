@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.1.3 — 15/11/2026
+
+- Check that Font Awesome styles and the actual font file are available before displaying built-in icons.
+- Hide unavailable glyphs while keeping icon alignment, uploaded images and personal favourites working.
+- Explain missing Font Awesome on the settings page and in the picker; keep uploads and saved choices available.
+- Update the Plugin Manager description and display it as three paragraphs.
+- Include the complete release history in Plugin Manager's local changelog.
+
 ## v1.1.2 — 15/11/2026
 
 - Remember the entry search, selected menu and favourites-only filter after saves and page reloads.

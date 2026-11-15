@@ -57,7 +57,7 @@ $connection->query('CREATE DATABASE IF NOT EXISTS ami_menu_icons_test CHARACTER 
 $connection->close();
 $db = new queryFactory;
 if (!$db->connect($amiTestHost, 'root', '', 'ami_menu_icons_test', 'unused', false)) throw new RuntimeException('Test database connection failed.');
-$pluginRoot = dirname(__DIR__) . '/zc_plugins/AdminMenuIcons/v1.1.2';
+$pluginRoot = dirname(__DIR__) . '/zc_plugins/AdminMenuIcons/v1.1.3';
 require $pluginRoot . '/admin/includes/extra_datafiles/admin_menu_icons_filenames.php';
 foreach ([$pluginRoot . '/admin/includes/languages/english/extra_definitions/lang.admin_menu_icons_name.php', $pluginRoot . '/admin/includes/languages/english/lang.admin_menu_icons.php'] as $file) {
     foreach (require $file as $key => $value) define($key, $value);

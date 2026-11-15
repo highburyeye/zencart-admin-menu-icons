@@ -3,7 +3,7 @@
 Optional icons beside admin dropdown entries, with personal favourites shown in bold.
 Top-level headings and menu order stay unchanged. An empty icon space keeps every label aligned.
 
-**Current test build: v1.1.2.** Intended for Zen Cart 2.1.0 and 2.2.1.
+**Current test build: v1.1.3.** Intended for Zen Cart 2.1.0 and 2.2.1.
 See [testing notes](tests/README.md) for the checks performed and the remaining store checks.
 
 ## Features
@@ -25,13 +25,15 @@ See [testing notes](tests/README.md) for the checks performed and the remaining 
 - Zen Cart 2.1.0 or 2.2.1, running a PHP version supported by that release.
 - A modern browser with JavaScript and native HTML dialog support.
 - The PHP GD extension **only for uploaded images**. Built-in icons and favourites work without GD.
-- The usual Zen Cart admin styles and Font Awesome 6 Free solid font.
+- The usual Zen Cart admin styles. Font Awesome 6 Free solid is needed only for built-in icons.
+
+If Font Awesome is missing or its font file is blocked, built-in icons are hidden and the settings page explains why. Menu labels stay aligned, uploaded icons and bold favourites continue to work, and saved built-in choices remain available when Font Awesome is restored. The plugin uses the admin's existing font files; it does not fetch a replacement library from a CDN.
 
 ## Install
 
 1. Download the install ZIP from `packages`, or download and unzip this repository.
 2. Upload the **`zc_plugins/AdminMenuIcons`** folder into your shop's existing `zc_plugins` folder.
-   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.2/manifest.php`.
+   The result must be `YOUR_SHOP/zc_plugins/AdminMenuIcons/v1.1.3/manifest.php`.
    Keep the plugin's internal folder named `admin`; do not rename it to match your admin directory.
 3. Sign in as a superadmin and open **Modules → Plugin Manager**.
 4. Install and enable **Admin Menu Icons & Favourites**.
@@ -92,6 +94,7 @@ Upload the complete new version folder alongside the existing version and use Pl
 
 Upgrading from v1.0.0 creates the master-switch setting automatically. Existing icon assignments, explicit “no icon” choices, uploaded images and personal favourites are retained.
 The v1.1.1 update changes the settings layout and expands the icon picker; it keeps the same starting assignments and database structure as v1.1.0.
+The v1.1.3 update adds Font Awesome availability handling and clearer Plugin Manager information, with no database changes.
 
 If Plugin Manager logs an undefined `pluginId`, inspect the manifests of **all** encapsulated plugins.
 Opening that page scans every plugin, regardless of which entry is selected. Each manifest needs a `pluginId`; use `0` for an unpublished plugin.

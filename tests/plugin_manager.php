@@ -58,6 +58,12 @@ $scanner->inspectAndUpdate();
 check(count($control->rows) === 1 && $control->rows[0]['unique_key'] === 'AdminMenuIcons', 'real filesystem scan finds the plugin');
 check(count($versions->rows) === count(glob(dirname(__DIR__) . '/zc_plugins/AdminMenuIcons/*/manifest.php')), 'all released version manifests scan without warnings');
 check($control->rows[0]['zc_contrib_id'] === 0, 'latest manifest includes pluginId');
+check(substr_count($control->rows[0]['description'], '<p>') === 3 && str_contains($control->rows[0]['description'], 'each admin user manages their own favourites'), 'latest description contains the requested three paragraphs');
+$released = array_column($versions->rows, 'version');
+usort($released, 'version_compare');
+$latest = end($released);
+$history = file_get_contents(dirname(__DIR__) . '/zc_plugins/AdminMenuIcons/' . $latest . '/changelog.txt');
+check(array_filter($released, static fn($version) => !str_contains($history, $version . ' —')) === [], 'Plugin Manager changelog includes every released version');
 if (isset($argv[1])) {
     $scanner->inspectManifest(require $argv[1]);
     check($control->rows[0]['zc_contrib_id'] === 0, 'supplied custom manifest scans without warnings');

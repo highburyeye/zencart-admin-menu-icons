@@ -19,6 +19,8 @@ const path = require('node:path');
         page.on('pageerror', error => errors.push(error.message));
         await page.goto(base + '&user=1', {waitUntil: 'networkidle'});
         check(await page.locator('h1').textContent() === 'Admin Menu Icons & Favourites', 'settings page renders');
+        check(await page.evaluate(() => window.AdminMenuIcons.fontReady) === true, 'actual Font Awesome font loads');
+        check(await page.locator('.ami-font-warning').first().isHidden(), 'no font warning when Font Awesome works');
         check(await page.locator('.ami-menu-entry').count() === 8, 'all registered dropdown entries decorated');
         check(await page.locator('.dropdown-toggle.ami-menu-entry').count() === 0, 'top-level headings untouched');
         check(await page.locator('#ami-master-switch').getAttribute('aria-checked') === 'true', 'master switch starts on');
@@ -167,6 +169,37 @@ const path = require('node:path');
         await blockedPage.locator('#ami-row-configMyStore .ami-change').click();
         check(await blockedPage.locator('#ami-picker').evaluate(n => n.open), 'picker still works when storage is blocked');
         await blocked.close();
+        for (const failure of ['css', 'font']) {
+            const missing = await browser.newContext();
+            await missing.route(failure === 'css' ? '**/fontawesome/css/*.css' : '**/fontawesome/webfonts/*', route => route.abort());
+            const missingPage = await missing.newPage();
+            missingPage.on('pageerror', error => errors.push(error.message));
+            await missingPage.goto(base + '&user=1', {waitUntil: 'networkidle'});
+            check(await missingPage.evaluate(() => window.AdminMenuIcons.fontReady) === false, failure + ': unavailable Font Awesome detected');
+            check(await missingPage.locator('.ami-font-warning').first().isVisible(), failure + ': settings show a useful warning');
+            check(await missingPage.locator('.ami-menu-entry').count() === 8 && await missingPage.locator('.ami-menu-entry[data-ami-key="configMyStore"] .fa-house').evaluate(n => getComputedStyle(n).visibility === 'hidden'), failure + ': menu remains decorated but broken glyphs are hidden');
+            await missingPage.locator('#ami-row-orders .ami-switch').click();
+            await missingPage.waitForFunction(() => document.querySelector('#ami-row-orders .ami-switch').getAttribute('aria-checked') === 'true');
+            check(await missingPage.locator('.ami-menu-entry[data-ami-key="orders"] .ami-menu-text').evaluate(n => getComputedStyle(n).fontWeight === '700'), failure + ': personal favourites still work');
+            await missingPage.locator('#ami-row-orders .ami-change').click();
+            check(await missingPage.locator('#ami-picker .ami-font-warning').isVisible() && await missingPage.locator('#ami-built-in').isHidden(), failure + ': picker explains why built-in choices are unavailable');
+            await navigateAfter(missingPage, () => missingPage.locator('.ami-icon-option[data-kind="image"]').filter({hasText: 'MailBeez bee'}).click());
+            check(await missingPage.locator('.ami-menu-entry[data-ami-key="orders"] img').evaluate(n => n.complete && n.naturalWidth === 64 && n.naturalHeight === 64), failure + ': uploaded icon can be reused');
+            await missingPage.locator('#ami-row-orders .ami-change').click();
+            await missingPage.locator('#ami-upload-label').fill('No Font Awesome: ' + failure);
+            await missingPage.locator('input[name="ami_file"]').setInputFiles(path.join(__dirname, 'icon-test.png'));
+            await navigateAfter(missingPage, () => missingPage.locator('#ami-upload-form button[type="submit"]').click());
+            check(await missingPage.locator('.ami-menu-entry[data-ami-key="orders"] img').evaluate(n => n.complete && n.naturalWidth === 64 && n.naturalHeight === 32), failure + ': new uploads still work');
+            await missingPage.locator('#ami-row-orders .ami-switch').click();
+            await missingPage.waitForFunction(() => document.querySelector('#ami-row-orders .ami-switch').getAttribute('aria-checked') === 'false');
+            if (failure === 'font') {
+                await missingPage.locator('#ami-row-orders .ami-change').click();
+                await missingPage.screenshot({path: path.join(artifacts, 'picker-font-unavailable.png')});
+            }
+            await missing.close();
+        }
+        await page.reload({waitUntil: 'networkidle'});
+        check(await page.evaluate(() => window.AdminMenuIcons.fontReady) === true && await page.locator('#ami-built-in').evaluate(n => !n.hidden), 'built-in choices recover when the font is available again');
         check(errors.length === 0, 'no JavaScript errors: ' + errors.join('; '));
         console.log('PASS: ' + checks + ' browser checks, Chromium local fixture');
     } finally { await browser.close(); }
